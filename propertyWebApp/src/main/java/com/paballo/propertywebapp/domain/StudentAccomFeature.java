@@ -17,39 +17,39 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class StudentAccomFeature implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
+    private boolean parking;
+    private String  catering;
+    private boolean laundry;
     
-    public Location()
+    private StudentAccomFeature()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
+
+    private StudentAccomFeature(Builder builder) {
+        
+        id = builder.id;
+        parking = builder.parking;
+        catering = builder.catering;
+        laundry = builder.laundry;
         
     }
     
     public static class Builder
     {
         private Long id;
-        private String city;
-        private String province;
-        
+        private boolean parking;
+        private String  catering;
+        private boolean laundry;
         
         public Builder()
         {
-        
+            
         }
         
         public Builder id(Long value)
@@ -57,53 +57,60 @@ public class Location implements Serializable {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder parking(boolean value)
         {
-            city = value;
+            parking = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder catering(String value)
         {
-            province = value;
+            catering = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder laundry(boolean value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            laundry = value;
             return this;
         }
-        
-        public Location build()
+        public Builder StudentAccomFeature(StudentAccomFeature st)
         {
-            return new Location(this);
+            id = st.getId();
+            parking = st.isParking();
+            catering = st.getCatering();
+            laundry  = st.isLaundry();
+            
+            return this;
+        }
+        public StudentAccomFeature build()
+        {
+            return new StudentAccomFeature(this);
         }
         
     }
-            
-            
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public boolean isParking() {
+        return parking;
     }
 
-    public String getProvince() {
-        return province;
+    public String getCatering() {
+        return catering;
     }
 
+    public boolean isLaundry() {
+        return laundry;
+    }
     
+    
+
     public Long getId() {
         return id;
     }
 
-   
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +121,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof StudentAccomFeature)) {
             return false;
         }
-        Location other = (Location) object;
+        StudentAccomFeature other = (StudentAccomFeature) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +133,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.StudentAccomFeature[ id=" + id + " ]";
     }
     
 }

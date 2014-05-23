@@ -17,93 +17,94 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class MovingCompany implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
-    
-    public Location()
+    private String name;
+    private String number;
+    private String email;
+
+    private MovingCompany()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
+
+    private MovingCompany(Builder aThis) {
         
+        id = aThis.id;
+        name = aThis.name;
+        number = aThis.number;
+        email  = aThis.email;
     }
     
     public static class Builder
     {
-        private Long id;
-        private String city;
-        private String province;
-        
+         private Long id;
+        private String name;
+        private String number;
+        private String email;
         
         public Builder()
         {
-        
+            
         }
-        
         public Builder id(Long value)
         {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder name(String value)
         {
-            city = value;
+            name = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder number(String value)
         {
-            province = value;
+            number = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder email(String value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            email = value;
             return this;
         }
-        
-        public Location build()
+        public Builder MovingCompany(MovingCompany movingCompany)
         {
-            return new Location(this);
+            id = movingCompany.getId();
+            name = movingCompany.getName();
+            number = movingCompany.getNumber();
+            email  = movingCompany.getEmail();
+            return this;
         }
-        
+        public MovingCompany build()
+        {
+            return new MovingCompany(this);
+        }
     }
-            
-            
-
+    
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public String getName() {
+        return name;
     }
 
-    public String getProvince() {
-        return province;
+    public String getNumber() {
+        return number;
     }
 
+    public String getEmail() {
+        return email;
+    }
     
+
     public Long getId() {
         return id;
     }
 
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +115,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof MovingCompany)) {
             return false;
         }
-        Location other = (Location) object;
+        MovingCompany other = (MovingCompany) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +127,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.MovingCompany[ id=" + id + " ]";
     }
     
 }

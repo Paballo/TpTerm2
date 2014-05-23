@@ -17,93 +17,101 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class StudentDetails implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
+    private String studentNumber;
+    private String medicalAid;
+    private String vihicle;
     
-    public Location()
+    private StudentDetails()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
-        
+
+    private StudentDetails(Builder aThis) {
+        id = aThis.id;
+        studentNumber = aThis.studentNumber;
+        medicalAid = aThis.medicalAid;
+        vihicle = aThis.vihicle;
     }
     
     public static class Builder
     {
         private Long id;
-        private String city;
-        private String province;
-        
+        private String studentNumber;
+        private String medicalAid;
+        private String vihicle;
         
         public Builder()
         {
-        
+            
         }
-        
         public Builder id(Long value)
         {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder studentNumber(String value)
         {
-            city = value;
+            studentNumber = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder medicalAid(String value)
         {
-            province = value;
+            medicalAid = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder(String value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            
+        }
+        public Builder vihicle(String value)
+        {
+            vihicle = value;
             return this;
         }
-        
-        public Location build()
+        public Builder StudetDetails(StudentDetails studetDetails)
         {
-            return new Location(this);
+            id = studetDetails.getId();
+            studentNumber = studetDetails.getStudentNumber();
+            medicalAid = studetDetails.getMedicalAid();
+            vihicle = studetDetails.getVihicle();
+            
+            return this;
         }
-        
+        public StudentDetails build()
+        {
+            return new StudentDetails(this);
+        }
     }
-            
-            
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public String getStudentNumber() {
+        return studentNumber;
     }
 
-    public String getProvince() {
-        return province;
+    public String getMedicalAid() {
+        return medicalAid;
     }
 
+    public String getVihicle() {
+        return vihicle;
+    }
+    
+
+    
     
     public Long getId() {
         return id;
     }
 
-   
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +122,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof StudentDetails)) {
             return false;
         }
-        Location other = (Location) object;
+        StudentDetails other = (StudentDetails) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +134,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.StudentDetails[ id=" + id + " ]";
     }
     
 }

@@ -17,93 +17,111 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class Accomodation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
     
-    public Location()
+    private String name;
+    private String type;
+   // private List<Location> location;
+    private double price;
+    
+    private Accomodation()
     {
         
     }
     
-    private Location(Builder builder)
+    private Accomodation(Builder builder)
     {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
-        
+        name    = builder.name;
+        type    = builder.type;        
+        price   = builder.price;
     }
     
-    public static class Builder
-    {
-        private Long id;
-        private String city;
-        private String province;
+    public static class Builder{
         
+        private Long   id;
+        private String name;
+        private String type;
+        private double price;
         
         public Builder()
         {
-        
+            
         }
         
         public Builder id(Long value)
         {
-            id = value;
+            id  = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder name(String value)
         {
-            city = value;
+            name = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder type(String value)
         {
-            province = value;
-            return this;
-        }
-       
-        public Builder Location(Location location)
-        {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            type = value;
             return this;
         }
         
-        public Location build()
+        public Builder price(double value)
         {
-            return new Location(this);
+            price = value;
+            return this;
         }
+        
+        public Builder Accomodation(Accomodation accomodation)
+        {   
+            id      = accomodation.getId();
+            name    = accomodation.getName();
+            type    = accomodation.getType();
+            price   = accomodation.getPrice();
+            
+            return this;
+        }
+        
+        public Accomodation build()
+        {
+            return new Accomodation(this);
+        }
+        
+        
         
     }
-            
-            
+    
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
-    }
-
-    public String getProvince() {
-        return province;
+    public String getType() {
+        return type;
     }
 
     
+    
+    public String getName() {
+        return name;
+    }
+
+    
+    public double getPrice() {
+        return price;
+    }
+    
+    
+    
+
     public Long getId() {
         return id;
     }
 
-   
+    
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +132,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof Accomodation)) {
             return false;
         }
-        Location other = (Location) object;
+        Accomodation other = (Accomodation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +144,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.Accomodation[ id=" + id + " ]";
     }
     
 }

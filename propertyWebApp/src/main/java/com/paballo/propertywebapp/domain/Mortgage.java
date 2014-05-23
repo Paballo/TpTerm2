@@ -17,85 +17,87 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class Mortgage implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
+    private double price;
+    private double interestRate;
+    private int years;
     
-    public Location()
+    private Mortgage()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
+
+    private Mortgage(Builder aThis) {
         
+        id = aThis.id;
+        price = aThis.price;
+        interestRate = aThis.interestRate;
+        years = aThis.years;
+       
     }
     
     public static class Builder
     {
         private Long id;
-        private String city;
-        private String province;
-        
-        
-        public Builder()
-        {
-        
-        }
+        private double price;
+        private double interestRate;
+        private int years;
         
         public Builder id(Long value)
         {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder price(double value)
         {
-            city = value;
+            price = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder interestRate(double value)
         {
-            province = value;
+            interestRate = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder years(int value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            years = value;
             return this;
+        }
+        public Builder Mortgage(Mortgage mortage)
+        {
+            id = mortage.getId();
+            price = mortage.getPrice();
+            interestRate = mortage.getInterestRate();
+            years = mortage.getYears();
+            return this;
+        }
+        public Mortgage build()
+        {
+            return new Mortgage(this);
         }
         
-        public Location build()
-        {
-            return new Location(this);
-        }
         
     }
-            
             
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public double getPrice() {
+        return price;
     }
 
-    public String getProvince() {
-        return province;
+    public double getInterestRate() {
+        return interestRate;
+    }
+
+    public int getYears() {
+        return years;
     }
 
     
@@ -103,7 +105,6 @@ public class Location implements Serializable {
         return id;
     }
 
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +115,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof Mortgage)) {
             return false;
         }
-        Location other = (Location) object;
+        Mortgage other = (Mortgage) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +127,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.Mortgage[ id=" + id + " ]";
     }
     
 }

@@ -1,15 +1,15 @@
-/*
- * 
-To change this license header, choose License Headers in Project Properties.To change this template file, choose Tools | Templates
+ /*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
+
 package com.paballo.propertywebapp.domain;
 
 import java.io.Serializable;
-import java.util.Locale.Builder;
+import java.util.List;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -22,52 +22,47 @@ import javax.persistence.OneToMany;
  * @author donkey
  */
 @Entity
-public class User implements Serializable {
+public class Person implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
+    
     private String name;
-    private String lastname;
-    private String deal;
-    
+    private String surname;
+ 
     @Column(unique = true)
-    private String user_email;
-    
+    private String email;
     
     //@OneToMany(cascade = CascadeType.ALL)
-    //@JoinColumn(name = "User_id")
-
-    private User(Builder builder) {
-        
-        id       = builder.id;
-        name     = builder.name;
-        lastname = builder.lastname;
-        deal     = builder.deal;
-       
-    }
-
-    public User() {
-        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-    }
+    //@JoinColumn(name = "person_id")
+    //List <Properties> properties;
     
-    
-    
-    
-    
-    
-    public static class Builder
+    private Person()
     {
-        private Long    id;
-        private String  name;
-        private String  lastname;
-        private String  deal;
-        private String  user_email;
         
+    }
+
+    private Person(Builder builder) {
         
-        public Builder(String user_email)
+        id         = builder.id;
+        name       = builder.name;
+        surname    = builder.surname;
+        email      = builder.email;
+       // properties = builder.properties;
+        
+    }
+    public static class Builder{
+        
+        private Long id;
+        private String name;
+        private String surname;
+        private String email;
+        //List <Properties> properties;
+        
+        public Builder(String email)
         {
-            this.user_email = user_email;
+            this.email = email;
         }
         
         public Builder id(Long value)
@@ -81,31 +76,37 @@ public class User implements Serializable {
             name = value;
             return this;
         }
-        public Builder lastname(String value)
+        
+        public Builder surname(String value)
         {
-            lastname = value;
-            return this;
-        }
-        public Builder deal(String value)
-        {
-            deal  = value;
+            surname = value;
             return this;
         }
         
-        public Builder user(User user)
+       /* public Builder properties(List<Properties> value)
         {
-            id         = user.getId();
-            name       = user.getName();
-            lastname   = user.getLastname();
-            user_email = user.getUser_email();
-            deal       = user.getDeal();
+            properties = value;
             return this;
         }
-       
-        public User build()
+        */
+        
+        public Builder person(Person person)
         {
-            return new User(this);
+            id         = person.getId();
+            name       = person.getName();
+            surname    = person.getSurname();
+            email      = person.getSurname();
+           // properties = person.getProperties();
+            
+            return this;
         }
+        
+        public Person build()
+        {
+            return new Person(this);
+        }
+        
+        
     }
 
     public static long getSerialVersionUID() {
@@ -116,26 +117,25 @@ public class User implements Serializable {
         return name;
     }
 
-    public String getLastname() {
-        return lastname;
+    public String getSurname() {
+        return surname;
     }
 
-    public String getDeal() {
-        return deal;
+    public String getEmail() {
+        return email;
     }
 
-    public String getUser_email() {
-        return user_email;
+    /*
+    public List<Properties> getProperties() {
+        return properties;
     }
-
-
+    */
+    
     
 
     public Long getId() {
         return id;
     }
-
-   
 
     @Override
     public int hashCode() {
@@ -147,10 +147,10 @@ public class User implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof User)) {
+        if (!(object instanceof Person)) {
             return false;
         }
-        User other = (User) object;
+        Person other = (Person) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -159,7 +159,7 @@ public class User implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.User[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.Person[ id=" + id + " ]";
     }
     
 }

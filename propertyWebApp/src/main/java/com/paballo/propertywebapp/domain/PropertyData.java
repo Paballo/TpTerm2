@@ -17,93 +17,97 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class PropertyData implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
+    private int     rooms;
+    private int     bedrooms;
+    private int     garages;
     
-    public Location()
+    private PropertyData()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
+
+    private PropertyData(Builder aThis) {
        
-        
+        id = aThis.id;
+        rooms = aThis.rooms;
+        bedrooms = aThis.bedrooms;
+        garages = aThis.garages;
     }
     
     public static class Builder
     {
         private Long id;
-        private String city;
-        private String province;
-        
+        private int     rooms;
+        private int     bedrooms;
+        private int     garages;
         
         public Builder()
         {
-        
+            
         }
-        
         public Builder id(Long value)
         {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder rooms(int value)
         {
-            city = value;
+            rooms = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder bedrooms(int value)
         {
-            province = value;
+            bedrooms = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder garages(int value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            garages = value;
+            return this;
+        }
+        public Builder PropertyData(PropertyData propertyData)
+        {
+            id = propertyData.getId();
+            rooms = propertyData.getRooms();
+            bedrooms = propertyData.getBedrooms();
+            garages  = propertyData.getGarages();
             return this;
         }
         
-        public Location build()
+        public PropertyData build()
         {
-            return new Location(this);
+            return new PropertyData(this);
         }
-        
     }
-            
-            
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public int getRooms() {
+        return rooms;
     }
 
-    public String getProvince() {
-        return province;
+    public int getBedrooms() {
+        return bedrooms;
     }
 
+    public int getGarages() {
+        return garages;
+    }
+
+    
+    
     
     public Long getId() {
         return id;
     }
 
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +118,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof PropertyData)) {
             return false;
         }
-        Location other = (Location) object;
+        PropertyData other = (PropertyData) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +130,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.PropertyData[ id=" + id + " ]";
     }
     
 }

@@ -6,15 +6,14 @@
 
 package com.paballo.propertywebapp.repository;
 
-import com.paballo.propertywebapp.domain.User;
+import com.paballo.propertywebapp.domain.Company;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.stereotype.Repository;
+
 
 /**
  *
  * @author donkey
  */
-@Repository
-public interface UserRepository extends JpaRepository<User, Long> {
+public interface CompanyRepository extends JpaRepository<Company,Long> {
     
 }

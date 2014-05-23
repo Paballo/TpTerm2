@@ -17,93 +17,84 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class Student implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
     
-    public Location()
+    private String school;
+    private String year;
+   
+
+    private Student()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
+
+    private Student(Builder builder) {
+        
+        id     = builder.id;
+        school = builder.school;
+        year   = builder.year;
         
     }
     
     public static class Builder
     {
         private Long id;
-        private String city;
-        private String province;
-        
+        private String school;
+        private String year;
         
         public Builder()
         {
-        
+            
         }
         
         public Builder id(Long value)
         {
-            id = value;
+            id  = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder school(String value)
         {
-            city = value;
+            school = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder year(String value)
         {
-            province = value;
+            year = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder student(Student student)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            id     =  student.getId();
+            school =  student.getSchool();
+            year   =  student.getYear();
+            
             return this;
         }
-        
-        public Location build()
+        public Student Build()
         {
-            return new Location(this);
+            return new Student(this);
         }
-        
     }
-            
-            
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public String getSchool() {
+        return school;
     }
 
-    public String getProvince() {
-        return province;
+    public String getYear() {
+        return year;
     }
-
     
     public Long getId() {
         return id;
     }
-
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +105,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof Student)) {
             return false;
         }
-        Location other = (Location) object;
+        Student other = (Student) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +117,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.Student[ id=" + id + " ]";
     }
     
 }

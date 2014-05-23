@@ -4,12 +4,12 @@
  * and open the template in the editor.
  */
 
-package com.paballo.propertywebapp.domain;
+package com.paballo.propertywebapp.services;
 
 /**
  *
  * @author donkey
  */
-public class AreaStats {
+public interface Services {
     
 }

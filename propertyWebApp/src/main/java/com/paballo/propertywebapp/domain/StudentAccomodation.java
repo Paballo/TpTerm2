@@ -17,39 +17,40 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class StudentAccomodation implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
+    private String name;
+    //private <Location> location
+    private String people;
+    private double price;
     
-    public Location()
+    private StudentAccomodation()
     {
         
     }
-    
-    private Location(Builder builder)
-    {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
+
+    private StudentAccomodation(Builder builder) {
         
+        id       = builder.id;
+        name     = builder.name;
+        people   = builder.people;     
+        price    = builder.price;    
     }
     
     public static class Builder
     {
-        private Long id;
-        private String city;
-        private String province;
-        
+         private Long id;
+         private String name;
+         //private <Location> location
+         private String people;
+         private double price;
         
         public Builder()
         {
-        
+            
         }
         
         public Builder id(Long value)
@@ -57,53 +58,61 @@ public class Location implements Serializable {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        public Builder name(String value)
         {
-            city = value;
+            name = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder people(String value)
         {
-            province = value;
+            people =  value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder price(double value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            price = value;
+            return this;
+        }
+        public Builder studentAccomodation(StudentAccomodation studentAccomodation)
+        {   
+            id      =  studentAccomodation.getId();
+            name    =  studentAccomodation.getName();
+            people  =  studentAccomodation.getPeople();
+            price   =  studentAccomodation.getPrice();
+            
             return this;
         }
         
-        public Location build()
+        public StudentAccomodation build()
         {
-            return new Location(this);
+            return new StudentAccomodation(this);
         }
-        
     }
-            
-            
+    
+    
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public String getName() {
+        return name;
     }
 
-    public String getProvince() {
-        return province;
+    public String getPeople() {
+        return people;
     }
 
+    public double getPrice() {
+        return price;
+    }
     
+    
+
     public Long getId() {
         return id;
     }
 
-   
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +123,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof StudentAccomodation)) {
             return false;
         }
-        Location other = (Location) object;
+        StudentAccomodation other = (StudentAccomodation) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +135,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.StudentAccomodation[ id=" + id + " ]";
     }
     
 }

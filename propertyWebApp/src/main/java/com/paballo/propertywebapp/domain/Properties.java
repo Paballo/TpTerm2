@@ -17,39 +17,43 @@ import javax.persistence.Id;
  * @author donkey
  */
 @Entity
-public class Location implements Serializable {
+public class Properties implements Serializable {
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
-    private String city;
-    private String province;
-   
     
-    public Location()
+    private String  propertyType;
+    private String  name;
+   // private List<Location> location;
+    private double  price;
+    
+    
+    
+    private Properties(Builder builder)
     {
+        id           = builder.id;
+        propertyType = builder.propertyType;
+        name         = builder.name;
+        price        = builder.price;
         
     }
     
-    private Location(Builder builder)
+    public Properties()
     {
-        id       = builder.id;
-        city     = builder.city;
-        province = builder.province;
-       
         
     }
     
     public static class Builder
     {
-        private Long id;
-        private String city;
-        private String province;
-        
+        private Long   id;
+        private String propertyType;
+        private String name;
+        private double price;
         
         public Builder()
         {
-        
+            
         }
         
         public Builder id(Long value)
@@ -57,53 +61,63 @@ public class Location implements Serializable {
             id = value;
             return this;
         }
-        public Builder city(String value)
+        
+        public Builder propertyType(String value)
         {
-            city = value;
+            propertyType = value;
             return this;
         }
-        public Builder province(String value)
+        public Builder name(String value)
         {
-            province = value;
+            name = value;
             return this;
         }
-       
-        public Builder Location(Location location)
+        public Builder price(double value)
         {
-            id       = location.getId();
-            city     = location.getCity();
-            province = location.getProvince();
-           
+            price = value;
             return this;
         }
         
-        public Location build()
+        public Builder properties(Properties properties)
         {
-            return new Location(this);
+            id            = properties.getId();
+            propertyType  = properties.getPropertyType();
+            name          = properties.getName();
+            price         = properties.getPrice();
+            return this;
         }
+        
+        public Properties build()
+        {
+            return new Properties(this);
+        }
+        
         
     }
-            
-            
 
     public static long getSerialVersionUID() {
         return serialVersionUID;
     }
 
-    public String getCity() {
-        return city;
+    public String getPropertyType() {
+        return propertyType;
     }
 
-    public String getProvince() {
-        return province;
+    public String getName() {
+        return name;
     }
 
+    public double getPrice() {
+        return price;
+    }
     
+    
+
     public Long getId() {
         return id;
     }
 
-   
+
     @Override
     public int hashCode() {
         int hash = 0;
@@ -114,10 +128,10 @@ public class Location implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Location)) {
+        if (!(object instanceof Properties)) {
             return false;
         }
-        Location other = (Location) object;
+        Properties other = (Properties) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -126,7 +140,7 @@ public class Location implements Serializable {
 
     @Override
     public String toString() {
-        return "com.paballo.propertywebapp.domain.Location[ id=" + id + " ]";
+        return "com.paballo.propertywebapp.domain.Property[ id=" + id + " ]";
     }
     
 }

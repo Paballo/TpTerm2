@@ -6,9 +6,6 @@
 
 package com.paballo.propertywebapp.app.conf;
 
-import com.paballo.propertywebapp.domain.User;
-import javax.activation.DataSource;
-import javax.persistence.EntityManagerFactory;
 import org.apache.commons.dbcp.BasicDataSource;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
@@ -26,59 +23,45 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
  *
  * @author donkey
  */
+
+
 @Configuration
 @ComponentScan("com.paballo.propertywebapp")
 @EnableTransactionManagement
 @EnableJpaRepositories(basePackages = "com.paballo.propertywebapp.repository")
+public class ConnectionConfig {
 
-public class ConnectionConfig 
-{
-    
-     
-      
-     // @param dataSource
-     // @param jpaVendorAdapter
-     // @return
-     
-    
-        @Bean
-        public BasicDataSource dataSource() 
-        {
-            BasicDataSource ds = new org.apache.commons.dbcp.BasicDataSource();
-            ds.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
-            ds.setUrl("jdbc:derby://localhost:1527/sample");
-            ds.setUsername("app");
-            ds.setPassword("app");
-            return ds;
-        }
+    @Bean
+    public javax.sql.DataSource dataSource() {
+        BasicDataSource ds = new org.apache.commons.dbcp.BasicDataSource();
+        ds.setDriverClassName("org.apache.derby.jdbc.ClientDriver");
+        ds.setUrl("jdbc:derby://localhost:1527/sample");
+        ds.setUsername("app");
+        ds.setPassword("app");
+        return ds;
+    }
 
-     @Bean
-     public JpaVendorAdapter jpaVendorAdapter() 
-     {
-		HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
-		hibernateJpaVendorAdapter.setShowSql(false);
-		hibernateJpaVendorAdapter.setGenerateDdl(true);
-		hibernateJpaVendorAdapter.setDatabase(Database.DERBY);
-		return hibernateJpaVendorAdapter;
-     } 
-     
     @Bean
-    public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) 
-    {
-		LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
-		lef.setDataSource((javax.sql.DataSource) dataSource);
-		lef.setJpaVendorAdapter(jpaVendorAdapter);
-		lef.setPackagesToScan("com.paballo.propertwebapp.domain");
-                
-		return lef;
+    public LocalContainerEntityManagerFactoryBean entityManagerFactory(
+            javax.sql.DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) {
+        LocalContainerEntityManagerFactoryBean lef = new LocalContainerEntityManagerFactoryBean();
+        lef.setDataSource(dataSource);
+        lef.setJpaVendorAdapter(jpaVendorAdapter);
+        lef.setPackagesToScan("com.paballo.propertywebapp.domain");
+        return lef;
     }
-     
+
     @Bean
-    public PlatformTransactionManager transactionManager() 
-    {
-		return new JpaTransactionManager();
+    public JpaVendorAdapter jpaVendorAdapter() {
+        HibernateJpaVendorAdapter hibernateJpaVendorAdapter = new HibernateJpaVendorAdapter();
+        hibernateJpaVendorAdapter.setShowSql(false);
+        hibernateJpaVendorAdapter.setGenerateDdl(true);
+        hibernateJpaVendorAdapter.setDatabase(Database.DERBY);
+        return hibernateJpaVendorAdapter;
     }
-        
-    
-    
+
+    @Bean
+    public PlatformTransactionManager transactionManager() {
+        return new JpaTransactionManager();
+    }
 }
