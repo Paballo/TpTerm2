@@ -38,11 +38,7 @@ public class AgentServiceTest {
     @Test
     public void Total() {
     
-            service = ctx.getBean(AgentService.class);
             
-            List<Agent> agent = service.getTotalAgent();
-            
-            Assert.assertEquals(1,agent.size(),"Only 1 person");
         
     }
 

@@ -4,21 +4,18 @@
  * and open the template in the editor.
  */
 
-package com.paballo.propertywebapp.services;
+package com.paballo.propertywebapp.Impl.services;
 
 import com.paballo.propertywebapp.domain.Agent;
-import com.paballo.propertywebapp.services.Impl.AgentServiceImpl;
 import com.paballo.propertywebapp.services.Services;
-import com.paballo.propertywebapp.services.*;
-import java.util.List;
+
+
 
 /**
  *
  * @author donkey
  */
-public interface AgentService extends Services<Agent,Long>
-{
-
-   
+public interface AgentService extends Services<Agent,Long>{
+    
     
 }

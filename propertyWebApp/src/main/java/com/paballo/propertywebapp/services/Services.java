@@ -6,10 +6,24 @@
 
 package com.paballo.propertywebapp.services;
 
+import java.util.List;
+import static javax.servlet.jsp.tagext.TagAttributeInfo.ID;
+import static javax.swing.text.html.HTML.Tag.S;
+
 /**
  *
  * @author donkey
  */
-public interface Services {
+public interface Services<S, ID> {
+    
+    public S find(ID id);
+
+    public S persist(S entity);
+
+    public S merge(S entity);
+
+    public void remove(S entity);
+
+    public List<S> findAll();
     
 }

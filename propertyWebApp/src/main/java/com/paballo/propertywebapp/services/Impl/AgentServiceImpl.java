@@ -11,24 +11,43 @@ import com.paballo.propertywebapp.repository.AgentRepository;
 import com.paballo.propertywebapp.services.AgentService;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
-/**
- *
- * @author donkey
- */
-@Service
-public class AgentServiceImpl implements AgentService{
+
+
+public class AgentServiceImpl implements AgentService {
     
     @Autowired
     private AgentRepository agentRepository;
     
-
-    @Override
-    public List<Agent> getTotalAgent() 
+    public Agent find(Long id)
+    {
+        return agentRepository.findOne(id);
+    }
+    
+    public Agent persist(Agent entity)
+    {
+        return agentRepository.save(entity);
+    }
+    
+    public Agent merge(Agent entity)
+    {
+        if(entity.getId()!= null)
+        {
+            return agentRepository.save(entity);
+        }
+        return null;
+    }
+    public void remove(Agent entity)
+    {
+        agentRepository.delete(entity);
+    }
+    
+    public List<Agent> findAll()
     {
         return agentRepository.findAll();
-        
     }
+        
+    
+    
     
 }

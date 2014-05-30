@@ -10,7 +10,6 @@ import com.paballo.propertywebapp.domain.Properties;
 import com.paballo.propertywebapp.repository.PropertiesRepository;
 import com.paballo.propertywebapp.services.PropertyService;
 import java.util.List;
-import org.hibernate.criterion.Property;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
